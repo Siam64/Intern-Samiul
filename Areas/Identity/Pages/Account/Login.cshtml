@@ -3,9 +3,7 @@
 
 @{
     ViewData["Title"] = "Log in";
-    Layout = "_Layout";
-
-    
+    Layout = "_Layout";  
 }
 
 <header>
@@ -17,7 +15,9 @@
     <!-- Custom styles for this template-->
     <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
 </header>
-<h1>@ViewData["Title"]</h1>
+
+@* <h1>@ViewData["Title"]</h1> *@
+
 <body class="bg-gradient-primary">
 
     <div class="container">
@@ -46,22 +46,25 @@
                                                    id="exampleInputEmail" aria-describedby="emailHelp"
                                                    placeholder="Enter Email Address..."> *@
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                   id="exampleInputPassword" placeholder="Password">
+                                        <div class="form-">
+                                            <input asp-for="Input.Password" class="form-control form-control-user" autocomplete="current-password" aria-required="true" placeholder="password" />
+
+                                            @* <input type="password" class="form-control form-control-user"
+                                                   id="exampleInputPassword" placeholder="Password"> *@
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">
-                                                    Remember
-                                                    Me
+                                                <label asp-for="Input.RememberMe" class="form-label">
+                                                    <input class="form-check-input" asp-for="Input.RememberMe" />
+                                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
                                                 </label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                       
+                                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                                            @* href="index.html" class="btn btn-primary btn-user btn-block">
+                                            Login *@
+                                        
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
@@ -89,19 +92,9 @@
 
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
 </body>
 
-    <div class="col-md-4">
+@*       <div class="col-md-4">
         <section>
             <form id="account" method="post">
                 <h2>Use a local account to log in.</h2>
@@ -110,7 +103,7 @@
                 <div class="form-floating mb-3">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                     <label asp-for="Input.Email" class="form-label">Email</label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span> 
                 </div>
                 <div class="form-floating mb-3">
 
@@ -144,7 +137,7 @@
     <div class="col-md-6 col-md-offset-2">
        
     </div>
-</div>
+</div> 
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
@@ -158,3 +151,4 @@
     <!-- Custom scripts for all pages-->
     <script src="~/js/sb-admin-2.min.js"></script>
 }
+ *@

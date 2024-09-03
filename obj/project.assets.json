@@ -8270,11 +8270,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Intern\\CMSS\\CMSS\\CMSS.csproj",
+      "projectUniqueName": "E:\\git\\Intern-Samiul\\CMSS.csproj",
       "projectName": "CMSS",
-      "projectPath": "E:\\Intern\\CMSS\\CMSS\\CMSS.csproj",
+      "projectPath": "E:\\git\\Intern-Samiul\\CMSS.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "E:\\Intern\\CMSS\\CMSS\\obj\\",
+      "outputPath": "E:\\git\\Intern-Samiul\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",

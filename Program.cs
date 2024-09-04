@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CMSS.Data;
+using CMSS.Areas.Identity.Model;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("CMSSContextConnection") ?? throw new InvalidOperationException("Connection string 'CMSSContextConnection' not found.");
 
 builder.Services.AddDbContext<CMSSContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<CMSSContext>();
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<CMSSContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

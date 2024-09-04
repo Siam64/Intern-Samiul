@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using CMSS.Areas.Identity.Model;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CMSS.Data;
 
-public class CMSSContext : IdentityDbContext<IdentityUser>
+public class CMSSContext : IdentityDbContext<ApplicationUser>
 {
 
-/*    public string FirstName { get; set; }
-    public string LastName { get; set; }*/
     public CMSSContext(DbContextOptions<CMSSContext> options)
         : base(options)
     {
@@ -23,13 +22,4 @@ public class CMSSContext : IdentityDbContext<IdentityUser>
         //builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
     }
 
-/*    public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<CMSSContext>
-    {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<CMSSContext> builder)
-        {
-            builder.Property(u => u.FirstName).HasMaxLength(255);
-            builder.Property(u =>u.LastName).HasMaxLength(255);
-
-        }
-    }*/
 }

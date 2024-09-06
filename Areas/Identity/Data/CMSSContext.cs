@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using CMSS.DataModel;
 
 namespace CMSS.Data;
 
@@ -21,5 +22,7 @@ public class CMSSContext : IdentityDbContext<ApplicationUser>
         // Add your customizations after calling base.OnModelCreating(builder);
         //builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
     }
+
+public DbSet<CMSS.DataModel.CustomerInfo> CustomerInfo { get; set; } = default!;
 
 }

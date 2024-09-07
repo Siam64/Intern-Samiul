@@ -15,6 +15,7 @@ namespace CMSS.DataModel
         public Guid SenderID { get; set; }
         public Guid ReceiverID { get; set; }
 
+
         public DateTime CreateAt { get; set; }
         public Guid CreateBy { get; set; }
         public DateTime UpdateAt { get; set; }

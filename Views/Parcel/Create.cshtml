@@ -16,14 +16,14 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
-                        <input asp-for="Name" class="form-control" />
+                        <input asp-for="Name" id="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Number" class="control-label"></label>
-                        <input asp-for="Number" class="form-control" />
+                        <input asp-for="Number" id="Number" class="form-control" />
                         <span asp-validation-for="Number" class="text-danger"></span>
                     </div>
                 </div>
@@ -32,31 +32,116 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control" />
+                        <input asp-for="Email" id="Email" class="form-control" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
+                        <label asp-for="Note" class="control-label"></label>
+                        <input asp-for="Note" id="Note" class="form-control" />
+                        <span asp-validation-for="Note" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">  
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="city" class="control-label">Select City</label>
+                        <select asp-for="city" class="form-control" id="city">
+                            <option value="">Select a city</option>
+                            <option value="dhaka">Dhaka</option>
+                            <option value="chittagong">Chittagong</option>
+                            <option value="khulna">Khulna</option>
+                            <option value="rajshahi">Rajshahi</option>
+                            <option value="sylhet">Sylhet</option>
+                            <option value="barisal">Barisal</option>
+                            <option value="rangpur">Rangpur</option>
+                            <option value="mymensingh">Mymensingh</option>
+                            <option value="comilla">Comilla</option>
+                            <option value="narayanganj">Narayanganj</option>
+                            <option value="coxsbazar">Cox's Bazar</option>
+                            <option value="gazipur">Gazipur</option>
+                            <option value="tangail">Tangail</option>
+                            <option value="bogura">Bogura</option>
+                            <option value="noakhali">Noakhali</option>
+                            <option value="feni">Feni</option>
+                            <option value="jessore">Jessore</option>
+                            <option value="pabna">Pabna</option>
+                            <option value="Kushtia">Kushtia</option>
+
+                        </select>
+                        <span asp-validation-for="city" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
                         <label asp-for="Address" class="control-label"></label>
-                        <input asp-for="Address" class="form-control" />
+                        <input asp-for="Address" id="Address" class="form-control" />
                         <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <h4 class="text-center">Parcel Info</h4>
+            <hr />
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="Control-label">Parcel Type</label>
+                        <input class="form-control">
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="Control-label">Weight</label>
+                        <input class="form-control">
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="Control-label">Price</label>
+                        <input class="form-control">
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="Control-label">Note</label>
+                        <input class="form-control">
+                        <span class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="Note" class="control-label"></label>
-                        <input asp-for="Note" class="form-control" />
-                        <span asp-validation-for="Note" class="text-danger"></span>
+                        <label class="Control-label">Delivary Date</label>
+                        <input class="form-control">
+                        <span class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="city" class="control-label"></label>
-                        <input asp-for="city" class="form-control" />
-                        <span asp-validation-for="city" class="text-danger"></span>
+                        <label class="Control-label">Sender ID</label>
+                        <input class="form-control">
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="Control-label">Receiver ID</label>
+                        <input class="form-control">
+                        <span class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -68,43 +153,7 @@
             </div>
         </form>
 
-        @* <form asp-action="Create">
-            <h4 class="text-center">Parcel Info</h4>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Name" class="control-label"></label>
-                         <input asp-for="Name" class="form-control" />
-                         <span asp-validation-for="Name" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Number" class="control-label"></label>
-                         <input asp-for="Number" class="form-control" />
-                         <span asp-validation-for="Number" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Email" class="control-label"></label>
-                         <input asp-for="Email" class="form-control" />
-                       <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Address" class="control-label"></label>
-                         <input asp-for="Address" class="form-control" />
-                        <span asp-validation-for="Address" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-        </form> *@
+        
     </div>
 </div>
 

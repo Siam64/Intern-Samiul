@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using CMSS.DataModel;
+using CMSS.ViewModel;
 
 namespace CMSS.Data;
 
@@ -24,5 +25,7 @@ public class CMSSContext : IdentityDbContext<ApplicationUser>
     }
 
 public DbSet<CMSS.DataModel.CustomerInfo> CustomerInfo { get; set; } = default!;
+
+public DbSet<CMSS.ViewModel.ParcelInfoVM> ParcelInfoVM { get; set; } = default!;
 
 }

@@ -405,3 +405,7 @@ FodyWeavers.xsd
 /bin/Debug/net8.0
 appsettings.json
 /bin/Debug/net8.0
+bin/Debug/net8.0/CMSS.dll
+bin/Debug/net8.0/CMSS.dll
+/obj
+*.dll

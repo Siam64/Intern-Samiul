@@ -1,4 +1,4 @@
-﻿@model CMSS.DataModel.CustomerInfo
+﻿@model CMSS.ViewModel.MultiModelVM
 
 @{
     ViewData["Title"] = "Create";
@@ -15,70 +15,53 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="Name" class="control-label"></label>
-                        <input asp-for="Name" id="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <label asp-for="CustomerInfo.Name" class="control-label"></label>
+                        <input asp-for="CustomerInfo.Name" id="Name" class="form-control" />
+                        <span asp-validation-for="CustomerInfo.Name" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="Number" class="control-label"></label>
-                        <input asp-for="Number" id="Number" class="form-control" />
-                        <span asp-validation-for="Number" class="text-danger"></span>
+                        <label asp-for="CustomerInfo.Number" class="control-label"></label>
+                        <input asp-for="CustomerInfo.Number" id="Number" class="form-control" />
+                        <span asp-validation-for="CustomerInfo.Number" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" id="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <label asp-for="CustomerInfo.Email" class="control-label"></label>
+                        <input asp-for="CustomerInfo.Email" id="Email" class="form-control" />
+                        <span asp-validation-for="CustomerInfo.Email" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="Note" class="control-label"></label>
-                        <input asp-for="Note" id="Note" class="form-control" />
-                        <span asp-validation-for="Note" class="text-danger"></span>
+                        <label asp-for="CustomerInfo.Note" class="control-label"></label>
+                        <input asp-for="CustomerInfo.Note" id="Note" class="form-control" />
+                        <span asp-validation-for="CustomerInfo.Note" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="row">  
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="city" class="control-label">Select City</label>
-                        <select asp-for="city" class="form-control" id="city">
-                            <option value="">Select a city</option>
-                            <option value="dhaka">Dhaka</option>
-                            <option value="chittagong">Chittagong</option>
-                            <option value="khulna">Khulna</option>
-                            <option value="rajshahi">Rajshahi</option>
-                            <option value="sylhet">Sylhet</option>
-                            <option value="barisal">Barisal</option>
-                            <option value="rangpur">Rangpur</option>
-                            <option value="mymensingh">Mymensingh</option>
-                            <option value="comilla">Comilla</option>
-                            <option value="narayanganj">Narayanganj</option>
-                            <option value="coxsbazar">Cox's Bazar</option>
-                            <option value="gazipur">Gazipur</option>
-                            <option value="tangail">Tangail</option>
-                            <option value="bogura">Bogura</option>
-                            <option value="noakhali">Noakhali</option>
-                            <option value="feni">Feni</option>
-                            <option value="jessore">Jessore</option>
-                            <option value="pabna">Pabna</option>
-                            <option value="Kushtia">Kushtia</option>
-
+                        <label asp-for="CustomerInfo.city" class="control-label">Select City</label>
+                        <select asp-for="CustomerInfo.city" class="form-control" id="city">
+                            @foreach(var city in ViewBag.CityList)
+                            {
+                                <option value="@city.Value">@city.Name</option>
+                            }                            
                         </select>
-                        <span asp-validation-for="city" class="text-danger"></span>
+                        <span asp-validation-for="CustomerInfo.city" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="Address" class="control-label"></label>
-                        <input asp-for="Address" id="Address" class="form-control" />
-                        <span asp-validation-for="Address" class="text-danger"></span>
+                        <label asp-for="CustomerInfo.Address" class="control-label"></label>
+                        <input asp-for="CustomerInfo.Address" id="Address" class="form-control" />
+                        <span asp-validation-for="CustomerInfo.Address" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -91,15 +74,20 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="Control-label">Parcel Type</label>
-                        <input class="form-control">
+                        <label asp-for="ParcelInfo.ParcelType" class="control-label">Select Parcel Type</label>
+                        <select asp-for="ParcelInfo.ParcelType" class="form-control" id="city">
+                            @foreach (var type in ViewBag.ParcelList)
+                            {
+                                <option value="@type.Value">@type.Name</option>
+                            }
+                        </select>
                         <span class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="Control-label">Weight</label>
-                        <input class="form-control">
+                        <label asp-for="ParcelInfo.Weight" class="Control-label">Weight</label>
+                        <input asp-for="ParcelInfo.Weight" class="form-control">
                         <span class="text-danger"></span>
                     </div>
                 </div>
@@ -107,15 +95,15 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="Control-label">Price</label>
-                        <input class="form-control">
+                        <label asp-for="ParcelInfo.Price" class="Control-label">Price</label>
+                        <input asp-for="ParcelInfo.Price" class="form-control">
                         <span class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="Control-label">Note</label>
-                        <input class="form-control">
+                        <label asp-for="ParcelInfo.Note" class="Control-label">Note</label>
+                        <input asp-for="ParcelInfo.Note" class="form-control">
                         <span class="text-danger"></span>
                     </div>
                 </div>
@@ -123,8 +111,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="Control-label">Delivary Date</label>
-                        <input class="form-control">
+                        <label asp-for="ParcelInfo.DelivaryDate" class="Control-label">Delivary Date</label>
+                        <input asp-for="ParcelInfo.DelivaryDate" class="form-control">
                         <span class="text-danger"></span>
                     </div>
                 </div>

@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CMSS.Data;
 using CMSS.DataModel;
+using CMSS.Models;
+using CMSS.ViewModel;
+using NuGet.Protocol.Plugins;
+using System.Security.Claims;
 
 namespace CMSS.Controllers
 {
@@ -46,16 +50,55 @@ namespace CMSS.Controllers
         // GET: Parcel/Create
         public IActionResult Create()
         {
+            ViewBag.ParcelList = _context.lookup
+                .Where(x => x.Type == LookupTypes.ParcelType && x.IsActive)
+                .OrderBy(x => x.Serial)
+                .ToList();
+
+            ViewBag.CityList = _context.lookup
+                .Where(x=> x.Type == LookupTypes.City && x.IsActive)
+                .OrderBy(x => x.Serial)
+                .ToList();
             return View();
         }
 
-        // POST: Parcel/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        public IActionResult CreateLookup()
+        {
+            ViewBag.List = _context.lookup
+                .OrderBy(x => x.Id)
+                .ToList();
+            return View(); 
+        }
+
+        [HttpPost]
+        public IActionResult CreateLookup(lookupVM model)
+        {
+            if(model == null)
+                return Json(new { success = false, message = PopupMessage.error });
+
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            model.CreateAt = DateTime.UtcNow;
+            model.UpdateAt = DateTime.UtcNow;
+            model.CreateBy = GuidHelper.ToGuidOrDefault(userid);
+            model.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
+            
+            return Json(new { success = true, message = PopupMessage.success });
+        }
+
+
+
+
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,CustomerID,Name,Number,Email,Address,Note,city,CreateAt,CreateBy,UpdateAt,UpdateBy")] CustomerInfo customerInfo)
+        public async Task<IActionResult> Create(CustomerInfo customerInfo)
         {
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            customerInfo.CreateBy= GuidHelper.ToGuidOrDefault(userid);
+            customerInfo.UpdateBy= GuidHelper.ToGuidOrDefault(userid);
+
             if (ModelState.IsValid)
             {
                 _context.Add(customerInfo);

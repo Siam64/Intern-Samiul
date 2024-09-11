@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+
+<h4 class="text-center">Manage Lookup Table</h4>
+<hr />
+
+<div class="row">
+     <div class="col-md-6">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Type</label>
+                <input id="Type" type="text" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Name</label>
+                <input id="Name" type="text" class="form-control" />
+            </div>
+        </div> 
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Value</label>
+                <input id="Value" type="text" class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Serial</label>
+                <input id="Serial" type="number" class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">IsActive</label>
+                <select class="form-control" id="IsActive">
+                    <option value="-1">Select one</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <button type="button" id="submitButton" class="btn btn-primary">Submit</button>
+        </div>
+        
+    </div> 
+
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Serial</th>
+                    <th>Value</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>IsActive</th>
+                </tr>
+            </thead>
+           @*  <tbody>
+                @foreach (var city in ViewBag.CityList)
+                {
+                    <tr>
+                        <td>City.Serial</td>
+                        <td>City.Value</td>
+                        <td>City.Name</td>
+                        <td>City.Type</td>
+                        <td>City.IsActive</td>
+                    </tr>
+                }
+            </tbody> *@
+ 
+        </table>
+    </div>
+</div>
+
+<script src ="~/js/jquery-3.6.0.min.js"></script>
+<script src="~/js/alert.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#submitButton").click(function () {
+            var lookupData = {
+                Type: $('#Type').val(),
+                Name: $('#Name').val(),
+                Value: $('#Value').val(),
+                Serial: $('#Serial').val(),
+                IsActive: $('#IsActive').val(),
+
+            };
+            
+
+            console.log(lookupData);
+            $.ajax({
+                URL: '@Url.Action("CreateLookup", "Parcel")',
+                Type: 'POST',
+                success: function () {
+                    Swal.fire("Saved!");
+
+                },
+                Error: function () {
+                    
+                }
+            })
+        });
+
+
+    });
+    
+</script>

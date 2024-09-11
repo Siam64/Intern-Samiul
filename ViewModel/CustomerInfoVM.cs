@@ -17,4 +17,13 @@
         public DateTime UpdateAt { get; set; }
         public Guid UpdateBy { get; set; }
     }
+
+
+    public class MultiModelVM
+    {
+        public CustomerInfoVM CustomerInfo { get; set; }
+        public ParcelInfoVM ParcelInfo { get; set; }
+
+
+    }
 }

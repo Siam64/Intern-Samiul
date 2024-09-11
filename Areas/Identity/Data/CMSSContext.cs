@@ -26,6 +26,8 @@ public class CMSSContext : IdentityDbContext<ApplicationUser>
 
 public DbSet<CMSS.DataModel.CustomerInfo> CustomerInfo { get; set; } = default!;
 
-public DbSet<CMSS.ViewModel.ParcelInfoVM> ParcelInfoVM { get; set; } = default!;
+public DbSet<CMSS.DataModel.ParcelInfo> ParcelInfo { get; set; } = default!;
+
+public DbSet<CMSS.DataModel.lookup> lookup { get; set; } = default!;
 
 }

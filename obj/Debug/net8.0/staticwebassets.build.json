@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8zmGpYW9YBUBTtN4ryQB+JC4msJo73ojlbNVUJLHy4Q=",
+  "Hash": "rNMmRHXpcbyGbpf9XITNq96ZEaXumPqcTZvaNIO2KNk=",
   "Source": "CMSS",
   "BasePath": "_content/CMSS",
   "Mode": "Default",
@@ -1385,6 +1385,25 @@
       "OriginalItemSpec": "wwwroot\\img\\undraw_rocket.svg"
     },
     {
+      "Identity": "E:\\git\\Intern-Samiul\\wwwroot\\js\\alert.js",
+      "SourceId": "CMSS",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\git\\Intern-Samiul\\wwwroot\\",
+      "BasePath": "_content/CMSS",
+      "RelativePath": "js/alert.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\alert.js"
+    },
+    {
       "Identity": "E:\\git\\Intern-Samiul\\wwwroot\\js\\demo\\chart-area-demo.js",
       "SourceId": "CMSS",
       "SourceType": "Discovered",
@@ -1459,6 +1478,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\demo\\datatables-demo.js"
+    },
+    {
+      "Identity": "E:\\git\\Intern-Samiul\\wwwroot\\js\\jquery-3.6.0.min.js",
+      "SourceId": "CMSS",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\git\\Intern-Samiul\\wwwroot\\",
+      "BasePath": "_content/CMSS",
+      "RelativePath": "js/jquery-3.6.0.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\jquery-3.6.0.min.js"
     },
     {
       "Identity": "E:\\git\\Intern-Samiul\\wwwroot\\js\\sb-admin-2.js",

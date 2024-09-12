@@ -65,6 +65,8 @@ namespace CMSS.Controllers
         public IActionResult CreateLookup()
         {
             ViewBag.List = _context.lookup
+
+                .Where(x => (x.Type == LookupTypes.City || x.Type == LookupTypes.ParcelType) && x.Serial>0)
                 .OrderBy(x => x.Id)
                 .ToList();
             return View(); 
@@ -81,14 +83,113 @@ namespace CMSS.Controllers
             model.UpdateAt = DateTime.UtcNow;
             model.CreateBy = GuidHelper.ToGuidOrDefault(userid);
             model.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
-            
+
+            lookup data = new lookup();
+            data.Name = model.Name;
+            data.Value = model.Value;
+            data.Type = model.Type;
+            data.Serial = model.Serial;
+            data.IsActive = model.IsActive;
+            data.CreateAt = model.CreateAt;
+            data.CreateBy = model.CreateBy;
+            data.UpdateBy = model.UpdateBy;
+            data.UpdateAt = model.UpdateAt;
+
+            try
+            {
+                _context.lookup.Add(data);
+                _context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+            }
+      
             return Json(new { success = true, message = PopupMessage.success });
         }
 
 
 
 
+        [HttpPost]
+        public IActionResult UpdateLookup(lookupVM model)
+        {
+            if (model == null || model.Id == null)
+                return Json(new { success = false, message = PopupMessage.error });
 
+
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            model.CreateAt = DateTime.UtcNow;
+            model.UpdateAt = DateTime.UtcNow;
+            model.CreateBy = GuidHelper.ToGuidOrDefault(userid);
+            model.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
+
+            lookup data = _context.lookup.Where(x => x.Id == model.Id).FirstOrDefault();
+            data.Name = model.Name;
+            data.Value = model.Value;
+            data.Type = model.Type;
+            data.Serial = model.Serial;
+            data.IsActive = model.IsActive;
+            data.UpdateBy = model.UpdateBy;
+            data.UpdateAt = model.UpdateAt;
+
+            try
+            {
+                _context.lookup.Update(data);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+            }
+
+            return Json(new { success = true, message = PopupMessage.success });
+        }
+
+
+
+        [HttpPost]
+        public IActionResult DeleteLookup(lookupVM model)
+        {
+            if (model == null || model.Id == null)
+                return Json(new { success = false, message = PopupMessage.error });
+
+
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            model.CreateAt = DateTime.UtcNow;
+            model.UpdateAt = DateTime.UtcNow;
+            model.CreateBy = GuidHelper.ToGuidOrDefault(userid);
+            model.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
+
+            lookup data = _context.lookup.Where(x => x.Id == model.Id).FirstOrDefault();
+            data.Name = model.Name;
+            data.Value = model.Value;
+            data.Type = model.Type;
+            data.Serial = model.Serial;
+            data.CreateAt = model.CreateAt;
+            data.CreateBy = model.CreateBy;
+            data.IsActive = model.IsActive;
+            data.UpdateBy = model.UpdateBy;
+            data.UpdateAt = model.UpdateAt;
+
+            try
+            {
+                var lookupTable = _context.lookup.Find(data);
+                if (lookupTable != null)
+                {
+                    _context.lookup.Remove(lookupTable);
+                    _context.SaveChanges();
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+            }
+
+            return Json(new { success = true, message = PopupMessage.success });
+        }
 
 
         [HttpPost]

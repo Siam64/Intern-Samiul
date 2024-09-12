@@ -9,6 +9,8 @@
         public double Price { get; set; }
         public string Note { get; set; }
         public DateTime DelivaryDate { get; set; }
+        public Guid SenderID { get; set; }
+        public Guid ReceiverID { get; set; }
 
         public DateTime CreateAt { get; set; }
         public Guid CreateBy { get; set; }

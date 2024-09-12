@@ -1,87 +1,121 @@
-﻿@{
+﻿@model CMSS.DataModel.lookup
+
+@{
+
     ViewData["Title"] = "Create";
 }
 
 <h4 class="text-center">Manage Lookup Table</h4>
 <hr />
 
-<div class="row">
-     <div class="col-md-6">
+<div >
+    <div class="row">
         <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label">Type</label>
-                <input id="Type" type="text" class="form-control" />
+            <div class="card shadow-lg mb-4">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Manage Lookup Table</h4>
+                </div>
+                <div class="card-body">
+                    <form id="lookupForm">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="Type" class="form-label">Type</label>
+                                <input id="Type" type="text" class="form-control" placeholder="Enter Type" />
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="Name" class="form-label">Name</label>
+                                <input id="Name" type="text" class="form-control" placeholder="Enter Name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="Value" class="form-label">Value</label>
+                                <input id="Value" type="text" class="form-control" placeholder="Enter Value" />
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="Serial" class="form-label">Serial</label>
+                                <input id="Serial" type="number" class="form-control" placeholder="Enter Serial" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="control-label">IsActive</label>
+                                <select class="form-control" id="IsActive">
+                                    <option value="-1">Select one</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="button" id="submitButton" class="btn btn-success btn-lg">Submit</button>
+                            <button type="button" id="updateButton" class="btn btn-success btn-lg">Update</button>
+                            <button type="button" id="deleteButton" class="btn btn-success btn-lg">Delete</button>
+
+
+                        </div>
+                        
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label">Name</label>
-                <input id="Name" type="text" class="form-control" />
-            </div>
-        </div> 
 
         <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label">Value</label>
-                <input id="Value" type="text" class="form-control" />
+            <div class="card shadow-lg mb-4">
+                <div class="card-header bg-secondary text-white text-center">
+                    <h4 class="mb-0">Lookup Data</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-bordered text-center align-middle">
+                        <thead class="table-dark">
+                            <tr>
+@*                              <th scope="col">Id</th>
+ *@                             <th scope="col">Serial</th>
+                                <th scope="col">Value</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">IsActive</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.List != null && ViewBag.List.Count > 0)
+                            {
+                                foreach (var city in ViewBag.List)
+                                {
+                                    <tr>
+@*                                      <td>@city.Id</td>
+ *@                                     <td>@city.Serial</td>
+                                        <td>@city.Value</td>
+                                        <td>@city.Name</td>
+                                        <td>@city.Type</td>
+                                        <td>@(city.IsActive ? "Yes" : "No")</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-muted">No data available</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label">Serial</label>
-                <input id="Serial" type="number" class="form-control" />
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label">IsActive</label>
-                <select class="form-control" id="IsActive">
-                    <option value="-1">Select one</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-            </div>
-        </div>
-        <div>
-            <button type="button" id="submitButton" class="btn btn-primary">Submit</button>
-        </div>
-        
-    </div> 
-
-    <div>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Serial</th>
-                    <th>Value</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>IsActive</th>
-                </tr>
-            </thead>
-           @*  <tbody>
-                @foreach (var city in ViewBag.CityList)
-                {
-                    <tr>
-                        <td>City.Serial</td>
-                        <td>City.Value</td>
-                        <td>City.Name</td>
-                        <td>City.Type</td>
-                        <td>City.IsActive</td>
-                    </tr>
-                }
-            </tbody> *@
- 
-        </table>
     </div>
 </div>
+
+
+     
 
 <script src ="~/js/jquery-3.6.0.min.js"></script>
 <script src="~/js/alert.js"></script>
 <script>
+
     $(document).ready(function () {
+
+        
 
         $("#submitButton").click(function () {
             var lookupData = {
@@ -96,18 +130,76 @@
 
             console.log(lookupData);
             $.ajax({
-                URL: '@Url.Action("CreateLookup", "Parcel")',
-                Type: 'POST',
+                url: '@Url.Action("CreateLookup", "Parcel")',
+                type: 'POST',
+                data:lookupData,
+
                 success: function () {
                     Swal.fire("Saved!");
 
                 },
-                Error: function () {
-                    
+                error: function () {
+                    swal.fire("Failed!");
                 }
             })
         });
 
+
+        $("#updateButton").click(function () {
+            var lookupData = {
+                id: $('#Id').val(),
+                Type: $('#Type').val(),
+                Name: $('#Name').val(),
+                Value: $('#Value').val(),
+                Serial: $('#Serial').val(),
+                IsActive: $('#IsActive').val(),
+
+            };
+
+
+            console.log(lookupData);
+            $.ajax({
+                url: '@Url.Action("UpdateLookup", "Parcel")',
+                type: 'POST',
+                data: lookupData,
+
+                success: function () {
+                    Swal.fire("Saved!");
+
+                },
+                error: function () {
+                    swal.fire("Failed!");
+                }
+            })
+        });
+
+        $("#deleteButton").click(function () {
+            var lookupData = {
+                id: $('#Id').val(),
+                Type: $('#Type').val(),
+                Name: $('#Name').val(),
+                Value: $('#Value').val(),
+                Serial: $('#Serial').val(),
+                IsActive: $('#IsActive').val(),
+
+            };
+
+
+            console.log(lookupData);
+            $.ajax({
+                url: '@Url.Action("DeleteLookup", "Parcel")',
+                type: 'DELETE',
+                data: lookupData,
+
+                success: function () {
+                    Swal.fire("Removed!");
+
+                },
+                error: function () {
+                    swal.fire("Failed!");
+                }
+            })
+        });
 
     });
     

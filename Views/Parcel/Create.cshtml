@@ -4,144 +4,130 @@
     ViewData["Title"] = "Create";
 }
 
-<h1 class="text-center">Create</h1>
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2 class="display-5">Create Customer & Parcel Info</h2>
+@*         <h4 class="text-muted">Enter the required details below</h4>
+ *@    </div>
+    <hr />
 
-<h4 class="text-center">Customer Info</h4>
-<hr />
-<div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
-    <div class="col-md-6">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="CustomerInfo.Name" class="control-label"></label>
-                        <input asp-for="CustomerInfo.Name" id="Name" class="form-control" />
-                        <span asp-validation-for="CustomerInfo.Name" class="text-danger"></span>
-                    </div>
+    <div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">Customer Information</h3>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="CustomerInfo.Number" class="control-label"></label>
-                        <input asp-for="CustomerInfo.Number" id="Number" class="form-control" />
-                        <span asp-validation-for="CustomerInfo.Number" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="CustomerInfo.Email" class="control-label"></label>
-                        <input asp-for="CustomerInfo.Email" id="Email" class="form-control" />
-                        <span asp-validation-for="CustomerInfo.Email" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="CustomerInfo.Note" class="control-label"></label>
-                        <input asp-for="CustomerInfo.Note" id="Note" class="form-control" />
-                        <span asp-validation-for="CustomerInfo.Note" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">  
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="CustomerInfo.city" class="control-label">Select City</label>
-                        <select asp-for="CustomerInfo.city" class="form-control" id="city">
-                            @foreach(var city in ViewBag.CityList)
-                            {
-                                <option value="@city.Value">@city.Name</option>
-                            }                            
-                        </select>
-                        <span asp-validation-for="CustomerInfo.city" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="CustomerInfo.Address" class="control-label"></label>
-                        <input asp-for="CustomerInfo.Address" id="Address" class="form-control" />
-                        <span asp-validation-for="CustomerInfo.Address" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
-            <h4 class="text-center">Parcel Info</h4>
-            <hr />
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="ParcelInfo.ParcelType" class="control-label">Select Parcel Type</label>
-                        <select asp-for="ParcelInfo.ParcelType" class="form-control" id="city">
-                            @foreach (var type in ViewBag.ParcelList)
-                            {
-                                <option value="@type.Value">@type.Name</option>
-                            }
-                        </select>
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="ParcelInfo.Weight" class="Control-label">Weight</label>
-                        <input asp-for="ParcelInfo.Weight" class="form-control">
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-            </div> 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="ParcelInfo.Price" class="Control-label">Price</label>
-                        <input asp-for="ParcelInfo.Price" class="form-control">
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="ParcelInfo.Note" class="Control-label">Note</label>
-                        <input asp-for="ParcelInfo.Note" class="form-control">
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="ParcelInfo.DelivaryDate" class="Control-label">Delivary Date</label>
-                        <input asp-for="ParcelInfo.DelivaryDate" class="form-control">
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="Control-label">Sender ID</label>
-                        <input class="form-control">
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="Control-label">Receiver ID</label>
-                        <input class="form-control">
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary btn-block" />
-            </div>
-            <div class="text-center">
-                <a asp-action="Index">Back to List</a>
-            </div>
-        </form>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CustomerInfo.Name" class="form-label">Name</label>
+                                <input asp-for="CustomerInfo.Name" id="Name" class="form-control" placeholder="Enter Name" />
+                                <span asp-validation-for="CustomerInfo.Name" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CustomerInfo.Number" class="form-label">Phone Number</label>
+                                <input asp-for="CustomerInfo.Number" id="Number" class="form-control" placeholder="Enter Phone Number" />
+                                <span asp-validation-for="CustomerInfo.Number" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CustomerInfo.Email" class="form-label">Email</label>
+                                <input asp-for="CustomerInfo.Email" id="Email" class="form-control" placeholder="Enter Email Address" />
+                                <span asp-validation-for="CustomerInfo.Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CustomerInfo.Note" class="form-label">Note</label>
+                                <input asp-for="CustomerInfo.Note" id="Note" class="form-control" placeholder="Additional Note" />
+                                <span asp-validation-for="CustomerInfo.Note" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="CustomerInfo.city" class="control-label">Select City</label>
+                                    <select asp-for="CustomerInfo.city" class="form-control" id="city">
+                                        @foreach (var city in ViewBag.CityList)
+                                        {
+                                            <option value="@city.Value">@city.Name</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="CustomerInfo.city" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CustomerInfo.Address" class="form-label">Address</label>
+                                <input asp-for="CustomerInfo.Address" id="Address" class="form-control" placeholder="Enter Address" />
+                                <span asp-validation-for="CustomerInfo.Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <h3 class="text-center">Parcel Information</h3>
+                            <hr />
+                        </div>
 
-        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="ParcelInfo.ParcelType" class="control-label">Select Parcel Type</label>
+                                    <select asp-for="ParcelInfo.ParcelType" class="form-control" id="city">
+                                        @foreach (var type in ViewBag.ParcelList)
+                                        {
+                                            <option value="@type.Value">@type.Name</option>
+                                        }
+                                    </select>
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ParcelInfo.Weight" class="form-label">Weight (kg/gm)</label>
+                                <input asp-for="ParcelInfo.Weight" class="form-control" placeholder="Enter Parcel Weight" />
+                                <span asp-validation-for="ParcelInfo.Weight" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ParcelInfo.Price" class="form-label">Price</label>
+                                <input asp-for="ParcelInfo.Price" class="form-control" placeholder="Enter Parcel Price" />
+                                <span asp-validation-for="ParcelInfo.Price" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ParcelInfo.Note" class="form-label">Parcel Note</label>
+                                <input asp-for="ParcelInfo.Note" class="form-control" placeholder="Any special instructions" />
+                                <span asp-validation-for="ParcelInfo.Note" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ParcelInfo.DelivaryDate" class="form-label">Delivery Date</label>
+                                <input asp-for="ParcelInfo.DelivaryDate" type="date" class="form-control" />
+                                <span asp-validation-for="ParcelInfo.DelivaryDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Sender ID</label>
+                                <input class="form-control" placeholder="Enter Sender ID" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Receiver ID</label>
+                                <input class="form-control" placeholder="Enter Receiver ID" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 mt-4">
+                            <input type="submit" value="Create" class="btn btn-lg btn-success" />
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a asp-action="Index" class="btn btn-link text-muted">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

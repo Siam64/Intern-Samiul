@@ -11,12 +11,14 @@ using CMSS.Models;
 using CMSS.ViewModel;
 using NuGet.Protocol.Plugins;
 using System.Security.Claims;
+using System.Diagnostics;
 
 namespace CMSS.Controllers
 {
     public class ParcelController : Controller
     {
         private readonly CMSSContext _context;
+        bool isSave = false;
 
         public ParcelController(CMSSContext context)
         {
@@ -75,6 +77,7 @@ namespace CMSS.Controllers
         [HttpPost]
         public IActionResult CreateLookup(lookupVM model)
         {
+            Response.Headers.Add("Refresh", "2");
             if(model == null)
                 return Json(new { success = false, message = PopupMessage.error });
 
@@ -114,7 +117,7 @@ namespace CMSS.Controllers
         [HttpPost]
         public IActionResult UpdateLookup(lookupVM model)
         {
-            if (model == null || model.Id == null)
+            if (model == null || model.Id <0)
                 return Json(new { success = false, message = PopupMessage.error });
 
 
@@ -125,6 +128,11 @@ namespace CMSS.Controllers
             model.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
 
             lookup data = _context.lookup.Where(x => x.Id == model.Id).FirstOrDefault();
+            if (data == null)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+
+            }
             data.Name = model.Name;
             data.Value = model.Value;
             data.Type = model.Type;
@@ -149,37 +157,25 @@ namespace CMSS.Controllers
 
 
         [HttpPost]
-        public IActionResult DeleteLookup(lookupVM model)
+        public IActionResult DeleteLookup(int Id)
         {
-            if (model == null || model.Id == null)
+            if (Id < 0)
+            {
                 return Json(new { success = false, message = PopupMessage.error });
 
+            }
 
-            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            model.CreateAt = DateTime.UtcNow;
-            model.UpdateAt = DateTime.UtcNow;
-            model.CreateBy = GuidHelper.ToGuidOrDefault(userid);
-            model.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
-
-            lookup data = _context.lookup.Where(x => x.Id == model.Id).FirstOrDefault();
-            data.Name = model.Name;
-            data.Value = model.Value;
-            data.Type = model.Type;
-            data.Serial = model.Serial;
-            data.CreateAt = model.CreateAt;
-            data.CreateBy = model.CreateBy;
-            data.IsActive = model.IsActive;
-            data.UpdateBy = model.UpdateBy;
-            data.UpdateAt = model.UpdateAt;
-
+            var data = _context.lookup.Where(x => x.Id == Id).FirstOrDefault();
+           
+            if(data== null)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+            }
             try
             {
-                var lookupTable = _context.lookup.Find(data);
-                if (lookupTable != null)
-                {
-                    _context.lookup.Remove(lookupTable);
-                    _context.SaveChanges();
-                }
+                _context.lookup.Remove(data);
+                _context.SaveChanges();
+                return Json(new { success = true, message = PopupMessage.success });
 
             }
 
@@ -188,25 +184,96 @@ namespace CMSS.Controllers
                 return Json(new { success = false, message = PopupMessage.error });
             }
 
-            return Json(new { success = true, message = PopupMessage.success });
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CustomerInfo customerInfo)
+        public async Task<IActionResult> Create(MultiModelVM model)
         {
+            CustomerInfo customerdata= new CustomerInfo();
+            ParcelInfo parceldata= new ParcelInfo();
             var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            customerInfo.CreateBy= GuidHelper.ToGuidOrDefault(userid);
-            customerInfo.UpdateBy= GuidHelper.ToGuidOrDefault(userid);
+            
+
+            //var exCustomer = _context.CustomerInfo.Where(x => x.Number == model.CustomerInfo.Number).FirstOrDefault();
+
+            
+            
+                customerdata.Name = model.CustomerInfo.Name;
+                customerdata.Number = model.CustomerInfo.Number;
+                customerdata.Email = model.CustomerInfo.Email;
+                customerdata.Address = model.CustomerInfo.Address;
+                customerdata.Note = model.CustomerInfo.Note;
+                customerdata.city = model.CustomerInfo.city;
+                customerdata.CreateBy = GuidHelper.ToGuidOrDefault(userid);
+                customerdata.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
+                
+            
+            //else
+            //{
+            //    ////customerdata.Name = model.CustomerInfo.Name;
+            //    ////customerdata.Number = model.CustomerInfo.Number;
+            //    ////customerdata.Email = model.CustomerInfo.Email;
+            //    ////customerdata.Address = model.CustomerInfo.Address;
+            //    ////customerdata.Note = model.CustomerInfo.Note;
+            //    ////customerdata.city = model.CustomerInfo.city;
+            //    ////customerdata.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
+            //    ////_context.Update(customerdata);
+            //    ////await _context.SaveChangesAsync();
+            //    //return Json(new { message = PopupMessage.notValid });
+
+            //}
+
+
+            parceldata.ParcelType= model.ParcelInfo.ParcelType;
+            parceldata.Weight= model.ParcelInfo.Weight;
+            parceldata.Price= model.ParcelInfo.Price;
+            parceldata.Note= model.ParcelInfo.Note;
+            parceldata.DelivaryDate= model.ParcelInfo.DelivaryDate;
+            parceldata.CreateBy = GuidHelper.ToGuidOrDefault(userid);
+            parceldata.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
+
+            //if(exCustomer != null)
+            //{
+            //    parceldata.SenderID = exCustomer;
+            //    parceldata.ReceiverID = exCustomer;
+
+            //    _context.Add(parceldata);
+            //    await _context.SaveChangesAsync();
+            //}
+            //else
+
+            isSave = false;
 
             if (ModelState.IsValid)
             {
-                _context.Add(customerInfo);
+
+                _context.Add(customerdata);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                
+                _context.Add(parceldata);
+                await _context.SaveChangesAsync();
+                bool isSave = true;
+
             }
-            return View(customerInfo);
+
+            if(isSave = true)
+            {
+                parceldata.SenderID = customerdata.CustomerID;
+                parceldata.ReceiverID = customerdata.CustomerID;
+                _context.Update(parceldata);
+                await _context.SaveChangesAsync();
+            }
+               
+
+            
+                return RedirectToAction(nameof(Index));
+            
+
+
+
+            return View(model);
         }
 
         // GET: Parcel/Edit/5

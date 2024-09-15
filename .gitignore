@@ -421,3 +421,5 @@ obj/Debug/net8.0/CMSS.pdb
 obj/Debug/net8.0/CMSS.sourcelink.json
 obj/Debug/net8.0/ref/CMSS.dll
 obj/Debug/net8.0/refint/CMSS.dll
+/obj
+/bin

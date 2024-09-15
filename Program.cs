@@ -7,7 +7,9 @@ var connectionString = builder.Configuration.GetConnectionString("CMSSContextCon
 
 builder.Services.AddDbContext<CMSSContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<CMSSContext>();
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<CMSSContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

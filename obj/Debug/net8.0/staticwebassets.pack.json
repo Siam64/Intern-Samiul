@@ -5,6 +5,222 @@
       "PackagePath": "staticwebassets\\CMSS.bundle.scp.css"
     },
     {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\css\\animated.css",
+      "PackagePath": "staticwebassets\\assets\\css\\animated.css"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\css\\fontawesome.css",
+      "PackagePath": "staticwebassets\\assets\\css\\fontawesome.css"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\css\\owl.css",
+      "PackagePath": "staticwebassets\\assets\\css\\owl.css"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\css\\templatemo-chain-app-dev.css",
+      "PackagePath": "staticwebassets\\assets\\css\\templatemo-chain-app-dev.css"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\Flaticon.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\Flaticon.woff"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\FontAwesome.otf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\FontAwesome.otf"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\flexslider-icon.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\flexslider-icon.eot"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\flexslider-icon.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\flexslider-icon.svg"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\flexslider-icon.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\flexslider-icon.ttf"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\flexslider-icon.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\flexslider-icon.woff"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\fontawesome-webfont.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome-webfont.eot"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\fontawesome-webfont.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome-webfont.svg"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\fontawesome-webfont.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome-webfont.ttf"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\fontawesome-webfont.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome-webfont.woff"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\fontawesome-webfont.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome-webfont.woff2"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\slick.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\slick.eot"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\slick.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\slick.svg"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\slick.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\slick.ttf"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\fonts\\slick.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\slick.woff"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\about-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\about-bg.jpg"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\about-right-dec.png",
+      "PackagePath": "staticwebassets\\assets\\images\\about-right-dec.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\client-bg.png",
+      "PackagePath": "staticwebassets\\assets\\images\\client-bg.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\client-image.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\client-image.jpg"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\footer-bg.png",
+      "PackagePath": "staticwebassets\\assets\\images\\footer-bg.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\heading-line-dec.png",
+      "PackagePath": "staticwebassets\\assets\\images\\heading-line-dec.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\logo.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\pricing-table-01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\pricing-table-01.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\pricing-table-02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\pricing-table-02.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\pro-table-bottom.png",
+      "PackagePath": "staticwebassets\\assets\\images\\pro-table-bottom.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\pro-table-top.png",
+      "PackagePath": "staticwebassets\\assets\\images\\pro-table-top.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\quote.png",
+      "PackagePath": "staticwebassets\\assets\\images\\quote.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\regular-table-bottom.png",
+      "PackagePath": "staticwebassets\\assets\\images\\regular-table-bottom.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\regular-table-top.png",
+      "PackagePath": "staticwebassets\\assets\\images\\regular-table-top.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\service-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\service-bg.jpg"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\service-icon-01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\service-icon-01.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\service-icon-02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\service-icon-02.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\service-icon-03.png",
+      "PackagePath": "staticwebassets\\assets\\images\\service-icon-03.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\service-icon-04.png",
+      "PackagePath": "staticwebassets\\assets\\images\\service-icon-04.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\service-icon-hover-01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\service-icon-hover-01.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\service-icon-hover-02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\service-icon-hover-02.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\service-icon-hover-03.png",
+      "PackagePath": "staticwebassets\\assets\\images\\service-icon-hover-03.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\service-icon-hover-04.png",
+      "PackagePath": "staticwebassets\\assets\\images\\service-icon-hover-04.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\services-left-dec.png",
+      "PackagePath": "staticwebassets\\assets\\images\\services-left-dec.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\services-right-dec.png",
+      "PackagePath": "staticwebassets\\assets\\images\\services-right-dec.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\slider-dec.png",
+      "PackagePath": "staticwebassets\\assets\\images\\slider-dec.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\slider-left-dec.png",
+      "PackagePath": "staticwebassets\\assets\\images\\slider-left-dec.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\images\\white-logo.png",
+      "PackagePath": "staticwebassets\\assets\\images\\white-logo.png"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\js\\animation.js",
+      "PackagePath": "staticwebassets\\assets\\js\\animation.js"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\js\\custom.js",
+      "PackagePath": "staticwebassets\\assets\\js\\custom.js"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\js\\imagesloaded.js",
+      "PackagePath": "staticwebassets\\assets\\js\\imagesloaded.js"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\js\\isotope.js",
+      "PackagePath": "staticwebassets\\assets\\js\\isotope.js"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\js\\owl-carousel.js",
+      "PackagePath": "staticwebassets\\assets\\js\\owl-carousel.js"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\js\\popup.js",
+      "PackagePath": "staticwebassets\\assets\\js\\popup.js"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\assets\\js\\tabs.js",
+      "PackagePath": "staticwebassets\\assets\\js\\tabs.js"
+    },
+    {
       "Id": "E:\\git\\Intern-Samiul\\wwwroot\\css\\sb-admin-2.css",
       "PackagePath": "staticwebassets\\css\\sb-admin-2.css"
     },
@@ -19,6 +235,66 @@
     {
       "Id": "E:\\git\\Intern-Samiul\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\Flaticon.woff",
+      "PackagePath": "staticwebassets\\fonts\\Flaticon.woff"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\FontAwesome.otf",
+      "PackagePath": "staticwebassets\\fonts\\FontAwesome.otf"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\flexslider-icon.eot",
+      "PackagePath": "staticwebassets\\fonts\\flexslider-icon.eot"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\flexslider-icon.svg",
+      "PackagePath": "staticwebassets\\fonts\\flexslider-icon.svg"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\flexslider-icon.ttf",
+      "PackagePath": "staticwebassets\\fonts\\flexslider-icon.ttf"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\flexslider-icon.woff",
+      "PackagePath": "staticwebassets\\fonts\\flexslider-icon.woff"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\fontawesome-webfont.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.eot"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\fontawesome-webfont.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.svg"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\fontawesome-webfont.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.ttf"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\fontawesome-webfont.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.woff"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\fontawesome-webfont.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.woff2"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\slick.eot",
+      "PackagePath": "staticwebassets\\fonts\\slick.eot"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\slick.svg",
+      "PackagePath": "staticwebassets\\fonts\\slick.svg"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\slick.ttf",
+      "PackagePath": "staticwebassets\\fonts\\slick.ttf"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\fonts\\slick.woff",
+      "PackagePath": "staticwebassets\\fonts\\slick.woff"
     },
     {
       "Id": "E:\\git\\Intern-Samiul\\wwwroot\\img\\undraw_posting_photo.svg",
@@ -399,6 +675,14 @@
     {
       "Id": "E:\\git\\Intern-Samiul\\wwwroot\\scss\\utilities\\_text.scss",
       "PackagePath": "staticwebassets\\scss\\utilities\\_text.scss"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\vendor\\bootstrap\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\vendor\\bootstrap\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\git\\Intern-Samiul\\wwwroot\\vendor\\bootstrap\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\vendor\\bootstrap\\css\\bootstrap.min.css.map"
     },
     {
       "Id": "E:\\git\\Intern-Samiul\\wwwroot\\vendor\\bootstrap\\js\\bootstrap.bundle.js",

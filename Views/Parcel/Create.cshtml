@@ -49,10 +49,18 @@
                                 <div class="form-group">
                                     <label asp-for="CustomerInfo.city" class="control-label">Select City</label>
                                     <select asp-for="CustomerInfo.city" class="form-control" id="city">
-                                        @foreach (var city in ViewBag.CityList)
+                                        @if (ViewBag.CityList != null)
                                         {
-                                            <option value="@city.Value">@city.Name</option>
+                                            @foreach (var city in ViewBag.CityList)
+                                            {
+                                                <option value="@city.Value">@city.Name</option>
+                                            }
                                         }
+                                        else
+                                        {
+                                            <option value="">No cities available</option>
+                                        }
+
                                     </select>
                                     <span asp-validation-for="CustomerInfo.city" class="text-danger"></span>
                                 </div>
@@ -73,10 +81,18 @@
                                 <div class="form-group">
                                     <label asp-for="ParcelInfo.ParcelType" class="control-label">Select Parcel Type</label>
                                     <select asp-for="ParcelInfo.ParcelType" class="form-control" id="city">
-                                        @foreach (var type in ViewBag.ParcelList)
+                                        @if (ViewBag.ParcelList != null)
                                         {
-                                            <option value="@type.Value">@type.Name</option>
+                                            @foreach (var type in ViewBag.ParcelList)
+                                            {
+                                                <option value="@type.Value">@type.Name</option>
+                                            }
                                         }
+                                        else
+                                        {
+                                            <option value="">Not available</option>
+                                        }
+                                   
                                     </select>
                                     <span class="text-danger"></span>
                                 </div>
@@ -104,18 +120,6 @@
                                 <label asp-for="ParcelInfo.DelivaryDate" class="form-label">Delivery Date</label>
                                 <input asp-for="ParcelInfo.DelivaryDate" type="date" class="form-control" />
                                 <span asp-validation-for="ParcelInfo.DelivaryDate" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Sender ID</label>
-                                <input class="form-control" placeholder="Enter Sender ID" />
-                                <span class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Receiver ID</label>
-                                <input class="form-control" placeholder="Enter Receiver ID" />
-                                <span class="text-danger"></span>
                             </div>
                         </div>
                         <div class="d-grid gap-2 mt-4">

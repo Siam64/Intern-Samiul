@@ -13,7 +13,7 @@ namespace CMSS.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult index()
         {
             return View();
         }

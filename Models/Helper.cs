@@ -18,6 +18,8 @@ namespace CMSS.Models
     {
         public const string success = "Well done";
         public const string error = "failed";
+        public const string notValid = "User already exist with this number";
+
     }
 
     public static class GuidHelper

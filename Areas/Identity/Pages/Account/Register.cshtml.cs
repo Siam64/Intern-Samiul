@@ -141,7 +141,9 @@ namespace CMSS.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                    return RedirectToAction("Index", "Parcel", new { area = "" });
+
+                    //return LocalRedirect(returnUrl);
 
                     /*var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

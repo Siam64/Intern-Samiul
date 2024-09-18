@@ -12,9 +12,11 @@ using CMSS.ViewModel;
 using NuGet.Protocol.Plugins;
 using System.Security.Claims;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CMSS.Controllers
 {
+    //[Authorize]
     public class ParcelController : Controller
     {
         private readonly CMSSContext _context;
@@ -64,20 +66,20 @@ namespace CMSS.Controllers
             return View();
         }
 
+        //[Authorize(Roles ="SuperAdmin")]
         public IActionResult CreateLookup()
         {
             ViewBag.List = _context.lookup
-
-                .Where(x => (x.Type == LookupTypes.City || x.Type == LookupTypes.ParcelType) && x.Serial>0)
                 .OrderBy(x => x.Id)
                 .ToList();
             return View(); 
         }
+        //[Authorize(Roles = "SuperAdmin")]
 
         [HttpPost]
         public IActionResult CreateLookup(lookupVM model)
         {
-            Response.Headers.Add("Refresh", "2");
+            
             if(model == null)
                 return Json(new { success = false, message = PopupMessage.error });
 
@@ -102,17 +104,48 @@ namespace CMSS.Controllers
             {
                 _context.lookup.Add(data);
                 _context.SaveChanges();
+
+                var dataResult = _context.lookup.OrderBy(x => x.Id).ToList();
+                return Json(new { success = true, message = PopupMessage.success, data = dataResult });
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Json(new { success = false, message = PopupMessage.error });
             }
       
-            return Json(new { success = true, message = PopupMessage.success });
+            //return Json(new { success = true, message = PopupMessage.success });
         }
 
+        public IActionResult GetUpdateLookup(lookupVM model)
+        {
+            if (model == null || model.Id < 1)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
 
+            }
+            var result = _context.lookup.Where(x => x.Id == model.Id).First();
 
+            if(result == null)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+
+            }
+            return Json(new{ success = true,
+                message = PopupMessage.success,
+                data = new
+                {
+                    result.Id,
+                    result.IsActive,
+                    result.Name,
+                    result.Serial,
+                    result.Type,
+                    result.Value
+                }
+
+            });
+
+        }
 
         [HttpPost]
         public IActionResult UpdateLookup(lookupVM model)
@@ -122,8 +155,6 @@ namespace CMSS.Controllers
 
 
             var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            model.CreateAt = DateTime.UtcNow;
-            model.UpdateAt = DateTime.UtcNow;
             model.CreateBy = GuidHelper.ToGuidOrDefault(userid);
             model.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
 
@@ -145,13 +176,15 @@ namespace CMSS.Controllers
             {
                 _context.lookup.Update(data);
                 _context.SaveChanges();
+                var dataResult= _context.lookup.OrderBy(x => x.Id).ToList();
+                return Json(new { success = true, message = PopupMessage.success, data= dataResult });
+
             }
             catch (Exception ex)
             {
                 return Json(new { success = false, message = PopupMessage.error });
             }
 
-            return Json(new { success = true, message = PopupMessage.success });
         }
 
 

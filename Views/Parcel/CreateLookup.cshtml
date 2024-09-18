@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="Type" class="form-label">Type</label>
-                                <input id="Id" type="hidden" class="form-control" placeholder="Enter Type" />
+                                <input id="Id" type="hidden" class="form-control" placeholder="" />
                                 <input id="Type" type="text" class="form-control" placeholder="Enter Type" />
 
                             </div>
@@ -51,6 +51,8 @@
                         </div>
                         <div class="d-grid gap-2">
                             <button type="button" id="submitButton" class="btn btn-success btn-lg">Submit</button>
+                            <button type="button" id="submitUpdateButton" class="btn btn-success btn-lg">Confirm Update</button>
+
                         </div>
                     </form>
                 </div>
@@ -63,15 +65,17 @@
                     <h4 class="mb-0">Lookup Data</h4>
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover table-bordered text-center align-middle">
+                    <table class="table table-hover table-bordered text-center align-middle" id="lookupnewTable">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Serial</th>
+@*                                 <th scope="col">Id</th>
+ *@                                <th scope="col">Serial</th>
                                 <th scope="col">Value</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">IsActive</th>
+                                <th scope="col">Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -80,15 +84,15 @@
                                 foreach (var city in ViewBag.List)
                                 {
                                     <tr>
-                                        <td>@city.Id</td>
-                                        <td>@city.Serial</td>
+@*                                         <td>@city.Id</td>
+ *@                                        <td>@city.Serial</td>
                                         <td>@city.Value</td>
                                         <td>@city.Name</td>
                                         <td>@city.Type</td>
                                         <td>@(city.IsActive ? "Yes" : "No")</td>
                                         <td>
-                                            <button type="button" id="updateButton" class="btn btn-success btn-lg">Update</button>
-                                            <button type="button" id="deleteButton" class="btn btn-success btn-lg">Delete</button>
+                                            <button type="button" class="btn btn-success btn-lg GetupdateButton" data-id="@city.Id">Update</button>
+                                            <button type="button" id="deleteButton" class="btn btn-success btn-lg" data-id="@city.Id">Delete</button>
                                         </td>
                                     </tr>
                                 }
@@ -114,9 +118,140 @@
 <script src ="~/js/jquery-3.6.0.min.js"></script>
 <script src="~/js/alert.js"></script>
 <script>
+
+
+    $(document).on('click', '#deleteButton', function () {
+        var id = $(this).data('id');
+        console.log(id);
+
+        Swal.fire({
+            title: 'Are you sure?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var lookupData = {
+                    id: id
+                };
+
+                console.log(lookupData); 
+
+                $.ajax({
+                    url: '@Url.Action("DeleteLookup", "Parcel")',
+                    type: 'POST',
+                    data: lookupData,
+
+                    success: function () {
+                        Swal.fire("Removed!"); 
+                    },
+                    error: function () {
+                        Swal.fire("Failed!"); 
+                    }
+                });
+            }
+        });
+    });
+
+
+    $(document).on('click', '.GetupdateButton', function () {
+        var id = $(this).data('id');
+        console.log(id);
+        var lookupData = {
+            id: id
+        };
+        console.log(lookupData);
+        $.ajax({
+            url: '@Url.Action("GetUpdateLookup", "Parcel")',
+            type: 'POST',
+            data: lookupData,
+
+            success: function (response) {
+                console.log(response);
+
+                if (response.success) {
+                    $('#Id').val(response.data.id);
+                    $('#Name').val(response.data.name);
+                    $('#Value').val(response.data.value);
+                    $('#Type').val(response.data.type);
+                    $('#Serial').val(response.data.serial);
+
+                    if (response.data.isActive === true) {
+                        $('#IsActive').val('true');
+                    } else if (response.data.isActive === false) {
+                        $('#IsActive').val('false');
+                    } else {
+                        $('#IsActive').val('-1'); 
+                    }
+                }
+
+            },
+            error: function () {
+                swal.fire("Failed!");
+            }
+        });
+    });
+
+
     $(document).ready(function () {
 
+        $("#submitUpdateButton").click(function () {
+            var lookupId = $('#Id').val()
+
+            if (!lookupId) {
+                Swal.fire("Error", "Cant update without submitting", "error");
+                return;
+            }
+
+
+            var lookupData = {
+                Id: lookupId,
+                Type: $('#Type').val(),
+                Name: $('#Name').val(),
+                Value: $('#Value').val(),
+                Serial: $('#Serial').val(),
+                IsActive: $('#IsActive').val(),
+
+            };
+            console.log(lookupData);
+            $.ajax({
+                url: '@Url.Action("UpdateLookup", "Parcel")',
+                type: 'POST',
+                data: lookupData,
+
+                success: function (response) {
+                    Swal.fire("Saved!");
+                    // var newRow = `
+
+                    //         <tr>
+                    //         <td> ${response.data[response.data.length - 1].serial}</td>
+                    //         <td> ${response.data[response.data.length - 1].value}</td>
+                    //         <td> ${response.data[response.data.length - 1].name}</td>
+                    //         <td> ${response.data[response.data.length - 1].type}</td>
+                    //         <td> ${response.data[response.data.length - 1].isactive}</td>
+                    //         </tr>
+                    //     `;
+                    // $('#lookupnewTable').append(newRow);
+                },
+                error: function () {
+                    swal.fire("Failed!");
+                }
+            })
+        });
+
+
+
          $("#submitButton").click(function () {
+            var lookupId = $('#Id').val();
+
+            if (lookupId) {
+                Swal.fire("Error", "Cant submit while updating!", "error");
+                return;
+            }
+
             var lookupData = {
                 Type: $('#Type').val(),
                 Name: $('#Name').val(),
@@ -131,89 +266,26 @@
                 type: 'POST',
                 data:lookupData,
 
-                success: function () {
+                success: function (response) {
                     Swal.fire("Saved!");
 
+                    var newRow = `
+
+                        <tr>
+                        <td> ${response.data[response.data.length -1].serial}</td>
+                        <td> ${response.data[response.data.length -1].value}</td>
+                        <td> ${response.data[response.data.length -1].name}</td>
+                        <td> ${response.data[response.data.length -1].type}</td>
+                        <td>${response.data[response.data.length - 1].isactive ? 'Yes' : 'No'}</td>
+                        </tr>
+                    `;
+                    $('#lookupnewTable').append(newRow);
                 },
                 error: function () {
                     swal.fire("Failed!");
                 }
             })
         });
-
-
-        $("#updateButton").click(function () {
-            var lookupData = {
-                id: $('#Id').val(),
-                Type: $('#Type').val(),
-                Name: $('#Name').val(),
-                Value: $('#Value').val(),
-                Serial: $('#Serial').val(),
-                IsActive: $('#IsActive').val(),
-
-            };
-
-
-            console.log(lookupData);
-            $.ajax({
-                url: '@Url.Action("UpdateLookup", "Parcel")',
-                type: 'POST',
-                data: JSON.stringify(lookupData),
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                success: function () {
-                    Swal.fire("Saved!");
-                },
-                error: function () {
-                    Swal.fire("Failed!");
-                }
-            });
-
-        });
-
-        //     $.ajax({
-        //         url: '@Url.Action("UpdateLookup", "Parcel")',
-        //         type: 'POST',
-        //         data: lookupData,
-
-        //         success: function () {
-        //             Swal.fire("Saved!");
-
-        //         },
-        //         error: function () {
-        //             swal.fire("Failed!");
-        //         }
-        //     })
-        // });
-
-        $("#deleteButton").click(function () {
-            var lookupData = {
-                id: $('#Id').val(),
-                Type: $('#Type').val(),
-                Name: $('#Name').val(),
-                Value: $('#Value').val(),
-                Serial: $('#Serial').val(),
-                IsActive: $('#IsActive').val(),
-
-            };
-
-
-            console.log(lookupData);
-            $.ajax({
-                url: '@Url.Action("DeleteLookup", "Parcel")',
-                type: 'DELETE',
-                data: lookupData,
-
-                success: function () {
-                    Swal.fire("Removed!");
-
-                },
-                error: function () {
-                    swal.fire("Failed!");
-                }
-            })
-        });
-
     });
     
 </script>

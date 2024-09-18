@@ -104,6 +104,7 @@ namespace CMSS.Controllers
             {
                 _context.lookup.Add(data);
                 _context.SaveChanges();
+                ModelState.Clear();
 
                 var dataResult = _context.lookup.OrderBy(x => x.Id).ToList();
                 return Json(new { success = true, message = PopupMessage.success, data = dataResult });

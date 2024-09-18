@@ -21,18 +21,18 @@
                             <div class="col-md-12 mb-3">
                                 <label for="Type" class="form-label">Type</label>
                                 <input id="Id" type="hidden" class="form-control" placeholder="" />
-                                <input id="Type" type="text" class="form-control" placeholder="Enter Type" />
+                                <input id="Type" type="text" class="form-control" placeholder="Enter Type" required />
 
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="Name" class="form-label">Name</label>
-                                <input id="Name" type="text" class="form-control" placeholder="Enter Name" />
+                                <input id="Name" type="text" class="form-control" placeholder="Enter Name" required />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="Value" class="form-label">Value</label>
-                                <input id="Value" type="text" class="form-control" placeholder="Enter Value" />
+                                <input id="Value" type="text" class="form-control" placeholder="Enter Value" required />
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="Serial" class="form-label">Serial</label>
@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label class="control-label">IsActive</label>
-                                <select class="form-control" id="IsActive">
+                                <select class="form-control" id="IsActive" required>
                                     <option value="-1">Select one</option>
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
@@ -68,8 +68,9 @@
                     <table class="table table-hover table-bordered text-center align-middle" id="lookupnewTable">
                         <thead class="table-dark">
                             <tr>
-@*                                 <th scope="col">Id</th>
- *@                                <th scope="col">Serial</th>
+                                @* <th scope="col">Id</th>
+                                *@
+                                <th scope="col">Serial</th>
                                 <th scope="col">Value</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Type</th>
@@ -84,8 +85,9 @@
                                 foreach (var city in ViewBag.List)
                                 {
                                     <tr>
-@*                                         <td>@city.Id</td>
- *@                                        <td>@city.Serial</td>
+                                        @*  <td>@city.Id</td>
+                                *@
+                                        <td>@city.Serial</td>
                                         <td>@city.Value</td>
                                         <td>@city.Name</td>
                                         <td>@city.Type</td>
@@ -113,9 +115,9 @@
 
 
 
-     
 
-<script src ="~/js/jquery-3.6.0.min.js"></script>
+
+<script src="~/js/jquery-3.6.0.min.js"></script>
 <script src="~/js/alert.js"></script>
 <script>
 
@@ -138,7 +140,7 @@
                     id: id
                 };
 
-                console.log(lookupData); 
+                console.log(lookupData);
 
                 $.ajax({
                     url: '@Url.Action("DeleteLookup", "Parcel")',
@@ -146,10 +148,10 @@
                     data: lookupData,
 
                     success: function () {
-                        Swal.fire("Removed!"); 
+                        Swal.fire("Removed!");
                     },
                     error: function () {
-                        Swal.fire("Failed!"); 
+                        Swal.fire("Failed!");
                     }
                 });
             }
@@ -184,7 +186,7 @@
                     } else if (response.data.isActive === false) {
                         $('#IsActive').val('false');
                     } else {
-                        $('#IsActive').val('-1'); 
+                        $('#IsActive').val('-1');
                     }
                 }
 
@@ -235,6 +237,7 @@
                     //         </tr>
                     //     `;
                     // $('#lookupnewTable').append(newRow);
+                    $('#lookupForm')[0].reset();
                 },
                 error: function () {
                     swal.fire("Failed!");
@@ -244,11 +247,17 @@
 
 
 
-         $("#submitButton").click(function () {
+        $("#submitButton").click(function () {
             var lookupId = $('#Id').val();
 
             if (lookupId) {
                 Swal.fire("Error", "Cant submit while updating!", "error");
+                return;
+            }
+
+            var form = document.getElementById('lookupForm');
+            if (!form.checkValidity()) {
+                Swal.fire("Error", "Please fill in all required fields.", "error");
                 return;
             }
 
@@ -260,26 +269,34 @@
                 IsActive: $('#IsActive').val(),
 
             };
+            
+
             console.log(lookupData);
             $.ajax({
                 url: '@Url.Action("CreateLookup", "Parcel")',
                 type: 'POST',
-                data:lookupData,
+                data: lookupData,
 
                 success: function (response) {
                     Swal.fire("Saved!");
 
                     var newRow = `
 
-                        <tr>
-                        <td> ${response.data[response.data.length -1].serial}</td>
-                        <td> ${response.data[response.data.length -1].value}</td>
-                        <td> ${response.data[response.data.length -1].name}</td>
-                        <td> ${response.data[response.data.length -1].type}</td>
-                        <td>${response.data[response.data.length - 1].isactive ? 'Yes' : 'No'}</td>
-                        </tr>
-                    `;
+                            <tr>
+                            <td> ${response.data[response.data.length - 1].serial}</td>
+                            <td> ${response.data[response.data.length - 1].value}</td>
+                            <td> ${response.data[response.data.length - 1].name}</td>
+                            <td> ${response.data[response.data.length - 1].type}</td>
+                            <td>${response.data[response.data.length - 1].isactive ? 'Yes' : 'No'}</td>
+                            <td>
+                            <button type="button" class="btn btn-success btn-lg GetupdateButton" data-id="${response.data[response.data.length - 1].id}">Update</button>
+                            <button type="button" id="deleteButton" class="btn btn-success btn-lg" data-id="${response.data[response.data.length - 1].id}">Delete</button>
+                            </td>
+                            </tr>
+                        `;
                     $('#lookupnewTable').append(newRow);
+
+                    $('#lookupForm')[0].reset();
                 },
                 error: function () {
                     swal.fire("Failed!");
@@ -287,5 +304,5 @@
             })
         });
     });
-    
+
 </script>

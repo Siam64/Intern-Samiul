@@ -106,7 +106,7 @@ namespace CMSS.Controllers
                 _context.SaveChanges();
                 ModelState.Clear();
 
-                var dataResult = _context.lookup.OrderBy(x => x.Id).ToList();
+                var dataResult = _context.lookup.Where(x=>x.Id==data.Id).OrderBy(x => x.Id).ToList();
                 return Json(new { success = true, message = PopupMessage.success, data = dataResult });
 
             }
@@ -200,11 +200,7 @@ namespace CMSS.Controllers
             }
 
             var data = _context.lookup.Where(x => x.Id == Id).FirstOrDefault();
-           
-            if(data== null)
-            {
-                return Json(new { success = false, message = PopupMessage.error });
-            }
+        
             try
             {
                 _context.lookup.Remove(data);

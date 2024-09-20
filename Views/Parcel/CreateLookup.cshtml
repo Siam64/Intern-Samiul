@@ -68,8 +68,6 @@
                     <table class="table table-hover table-bordered text-center align-middle" id="lookupnewTable">
                         <thead class="table-dark">
                             <tr>
-                                @* <th scope="col">Id</th>
-                                *@
                                 <th scope="col">Serial</th>
                                 <th scope="col">Value</th>
                                 <th scope="col">Name</th>
@@ -85,8 +83,6 @@
                                 foreach (var city in ViewBag.List)
                                 {
                                     <tr>
-                                        @*  <td>@city.Id</td>
-                                *@
                                         <td>@city.Serial</td>
                                         <td>@city.Value</td>
                                         <td>@city.Name</td>
@@ -121,7 +117,7 @@
 <script src="~/js/alert.js"></script>
 <script>
 
-
+    //FOR DELETE
     $(document).on('click', '#deleteButton', function () {
         var id = $(this).data('id');
         console.log(id);
@@ -148,23 +144,11 @@
                     data: lookupData,
 
                     success: function (receive) {
-                        Swal.fire("Removed!");
 
-                        //$('#lookupNewTable tbody').empty();
-
-                        receive.data.forEach(item => {
-                            var newRow = `
-
-                             <tr>
-                             <td> ${receive.data[receive.data.length - 1].serial}</td>
-                             <td> ${receive.data[receive.data.length - 1].value}</td>
-                             <td> ${receive.data[receive.data.length - 1].name}</td>
-                             <td> ${receive.data[receive.data.length - 1].type}</td>
-                             <td> ${receive.data[receive.data.length - 1].isactive}</td>
-                             </tr>
-                            `;
-                            $('#lookupnewTable tbody').append(newRow);
-                        });
+                        if (receive.success) {
+                            Swal.fire("Removed!");
+                            $('#lookupnewTable tbody').find('button[data-id="' + id + '"]').closest('tr').remove();
+                        }
                     },
                     error: function () {
                         Swal.fire("Failed!");
@@ -220,14 +204,14 @@
 
     $(document).ready(function () {
 
+        //FOR UPDATE
         $("#submitUpdateButton").click(function () {
             var lookupId = $('#Id').val()
 
             if (!lookupId) {
-                Swal.fire("Error", "Cant update without submitting", "error");
-                return;
+                 Swal.fire("Error", "Cant update without submitting", "error");
+                 return;
             }
-
 
             var lookupData = {
                 Id: lookupId,
@@ -246,20 +230,25 @@
 
                 success: function (response) {
                     Swal.fire("Saved!");
+                    $('#lookupnewTable').append(newrow);
 
-                 $('#lookupNewTable tbody').empty();
-                    response.data.forEach(item => {
-                        var newrow = `
-                                  <tr>
-                                        <td>${item.serial}</td>
-                                        <td>${item.value}</td>
-                                        <td>${item.name}</td>
-                                        <td>${item.type}</td>
-                                        <td>${item.isActive}</td>
-                                   </tr>
-                                    `;
-                        $('#lookupnewTable').append(newrow);
-                    });
+
+                 // $('#lookupnewTable tbody').empty();
+                 //    response.data.forEach(item => {
+                 //        var newrow = `
+                 //                  <tr>
+                 //                        <td>${item.serial}</td>
+                 //                        <td>${item.value}</td>
+                 //                        <td>${item.name}</td>
+                 //                        <td>${item.type}</td>
+                 //                        <td>${item.isActive}</td>
+                 //                        <td>
+                 //                        <button type="button" class="btn btn-success btn-lg GetupdateButton" data-id="${response.data[response.data.length - 1].id}">Update</button>
+                 //                        <button type="button" id="deleteButton" class="btn btn-success btn-lg" data-id="${response.data[response.data.length - 1].id}">Delete</button>
+                 //                        </td>
+                 //                   </tr>
+                 //                    `;
+                 //    });
 
 
                     $('#lookupForm')[0].reset();
@@ -271,14 +260,14 @@
         });
 
 
-
+        //FOR CREATE
         $("#submitButton").click(function () {
             var lookupId = $('#Id').val();
 
-            if (lookupId) {
-                Swal.fire("Error", "Cant submit while updating!", "error");
-                return;
-            }
+            // if (lookupId) {
+            //     Swal.fire("Error", "Cant submit while updating!", "error");
+            //     return;
+            // }
 
             var form = document.getElementById('lookupForm');
             if (!form.checkValidity()) {
@@ -312,7 +301,7 @@
                             <td> ${response.data[response.data.length - 1].value}</td>
                             <td> ${response.data[response.data.length - 1].name}</td>
                             <td> ${response.data[response.data.length - 1].type}</td>
-                            <td>${response.data[response.data.length - 1].isActive}</td>
+                            <td>${response.data[response.data.length - 1].isActive ? 'Yes' : 'No'}</td>
                             <td>
                             <button type="button" class="btn btn-success btn-lg GetupdateButton" data-id="${response.data[response.data.length - 1].id}">Update</button>
                             <button type="button" id="deleteButton" class="btn btn-success btn-lg" data-id="${response.data[response.data.length - 1].id}">Delete</button>

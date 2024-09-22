@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CMSS.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ParcelController : Controller
     {
         private readonly CMSSContext _context;
@@ -28,6 +28,8 @@ namespace CMSS.Controllers
         }
 
         // GET: Parcel
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.CustomerInfo.ToListAsync());
@@ -52,6 +54,8 @@ namespace CMSS.Controllers
         }
 
         // GET: Parcel/Create
+        [Authorize(Roles = "Admin")]
+
         public IActionResult Create()
         {
             ViewBag.ParcelList = _context.lookup
@@ -66,7 +70,7 @@ namespace CMSS.Controllers
             return View();
         }
 
-        //[Authorize(Roles ="SuperAdmin")]
+        [Authorize(Roles ="SuperAdmin")]
         public IActionResult CreateLookup()
         {
             ViewBag.List = _context.lookup
@@ -74,7 +78,7 @@ namespace CMSS.Controllers
                 .ToList();
             return View(); 
         }
-        //[Authorize(Roles = "SuperAdmin")]
+        [Authorize(Roles = "SuperAdmin")]
 
         [HttpPost]
         public IActionResult CreateLookup(lookupVM model)
@@ -177,7 +181,7 @@ namespace CMSS.Controllers
             {
                 _context.lookup.Update(data);
                 _context.SaveChanges();
-                var dataResult= _context.lookup.OrderBy(x => x.Id).ToList();
+                var dataResult= _context.lookup.OrderBy(x => x.Id==data.Id).ToList();
                 return Json(new { success = true, message = PopupMessage.success, data= dataResult });
 
             }
@@ -216,7 +220,7 @@ namespace CMSS.Controllers
 
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(MultiModelVM model)

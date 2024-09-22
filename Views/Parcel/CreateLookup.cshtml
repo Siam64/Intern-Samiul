@@ -204,7 +204,7 @@
         //FOR UPDATE
         $("#submitUpdateButton").click(function () {
             var lookupId = $('#Id').val()
-
+            debugger;
             if (!lookupId) {
                  Swal.fire("Error", "Cant update without submitting", "error");
                  return;
@@ -228,7 +228,12 @@
                 success: function (response) {
                     Swal.fire("Saved!");
                     if (response.success) {
-                        //$('#lookupnewTable tbody').find('button[data-id="' + id + '"]').closest('tr').remove();
+                        console.log(response.data);
+                        console.log(lookupId);
+                        $('#lookupnewTable tbody').find('button[data-id="' + lookupId + '"]').closest('tr').remove();
+
+                        debugger;
+
 
                         var newRow = `
 
